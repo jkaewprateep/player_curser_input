@@ -1,10 +1,10 @@
 # player_curser_input
 
-Study games player cursor as image input, most of the games we reqire to know player position in the screen and objects to perform efficiency action continue without curse we can do by these methods as sample:
+Study games player cursor as image input, most of the games that we are required to know player position on the screen and objects to perform efficiency action continue without game's cursers we can do it by these methods as samples:
 
 ### 1. Image enchantments : ### 
 
-Extracting features or masking, significant of data can by types, contrast, dimensions, widths, layers and criticals.
+Extracting features or masking, significant of data can decided by its types, data contrast, data dimensions, input widths, input layers and criticals.
 
 ```
 input = tf.constant( input, dtype=tf.int32 ).numpy()
@@ -14,13 +14,13 @@ masked_input = tf.keras.layers.Masking( mask_value=255.0, input_shape=(timesteps
 
 ### 2. Horizontals : ###
 
-When contrast is neighbours contrast or image global contrast the horizontals is level compared with in same layer. In example layers can be channels or the same layer it can be some relative data when all have relative values as S1 = { 0.89, 0.89, 0.56, 0.73, 0.35, 0.45 ... } 👧💬 Can we see some significants value from this series S1 ⁉️ 👧💬 Try convolutions them ```tf.keras.layers.Conv1D( 1, 3, activation='relu')(S1)``` you have ```{ 0.78, 0.73, 0.55, 0.51 ... }``` OR { 🟩, 🟦 } from [tf.image.resize()](https://www.tensorflow.org/api_docs/python/tf/image/resize)
+When input image contrast is the neighbours contrast or image global contrast, the horizontals is compared within the same layer. Continue, the layers can be channels or the same layer it can be extracting of some relative data S1 = { 0.89, 0.89, 0.56, 0.73, 0.35, 0.45 ... } 👧💬 Can we noticed some significants value from this series S1 ⁉️ 👧💬 Try ti use the convolutions function to the inputs data ```tf.keras.layers.Conv1D( 1, 3, activation='relu')(S1)``` you have ```{ 0.78, 0.73, 0.55, 0.51 ... }``` OR { 🟩, 🟦 } from [tf.image.resize()](https://www.tensorflow.org/api_docs/python/tf/image/resize)
 
 ### 3. Data grids and Segmentation :  ###
 
 #### 3.1 crop_to_bounding_box ####
 
-We select interesting scope from from object radious, in games it is the game player curser as inputs[26:35, 17:26, 0:1] or you can create specific shape but the rectangular is easy matching with same line environments or they can use hexagornal rectangular or exlipse or elapse pictures but we need only extracting positions from the image as input to our neuron networks [tf.image.crop_to_bounding_box()](https://www.tensorflow.org/api_docs/python/tf/image/crop_to_bounding_box)
+We can select the interesting scope from the object radious, in games or the game player curser as inputs[26:35, 17:26, 0:1] or you can create specific shapes for inputs but the rectangular is easiest matching with the same line environments or they can use hexagornal rectangular or eclipse or the elapse pictures but our requirements is extracting objects's positions from the input image as its input to our neuron networks [tf.image.crop_to_bounding_box()](https://www.tensorflow.org/api_docs/python/tf/image/crop_to_bounding_box)
 
 ```
 offset_height = 26
