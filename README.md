@@ -11,6 +11,22 @@ masked_input = tf.keras.layers.Masking( mask_value=255.0, input_shape=(timesteps
 
 2. Horizontals : when contrast is neighbours contrast or image global contrast the horizontals is level compared with in same layer. In example layers can be channels or the same layer it can be some relative data when all have relative values as S1 = { 0.89, 0.89, 0.56, 0.73, 0.35, 0.45 ... } 👧💬 Can we see some significants value from this series S1 ⁉️ 👧💬 Try convolutions them ```tf.keras.layers.Conv1D( 1, 3, activation='relu')(S1)``` you have ```{ 0.78, 0.73, 0.55, 0.51 ... }``` OR { 🟩, 🟦 } from [tf.image.resize()](https://www.tensorflow.org/api_docs/python/tf/image/resize)
 
+3. Data grids and Segmentation : 
+
+```
+offset_height = 26
+offset_width = 17
+target_height = 35 - 26
+target_width = 26 - 17
+cropped_original_image = tf.image.crop_to_bounding_box( original_image, offset_height, offset_width, target_height, target_width )
+```
+
+```
+boxes = tf.constant([26/42, 17/42, 35/42, 26/42], shape=(1, 1, 4))
+colors = tf.constant([[144.0, 238.0, 144.0]])
+original_image = tf.image.draw_bounding_boxes( tf.expand_dims( original_image, axis=0 ), boxes, colors)
+```
+
 Consider ```nearest```, ```bilinear```, ```area```, ```gaussian``` and ```lanczos5``` in the ```method``` parameter, they are working by fiters inputs and provide output from the relative values inside the selected matrixes.
 
 ```
