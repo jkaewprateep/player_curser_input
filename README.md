@@ -1,5 +1,15 @@
 # player_curser_input
-Study games player cursor as image input
+Study games player cursor as image input, most of the games we reqire to know player position in the screen and objects to perform efficiency action continue without curse we can do by these methods as sample:
+
+1. Image enchantments : extracting features or masking, significant of data can by types, contrast, dimensions, widths, layers and criticals.
+
+```
+input = tf.constant( input, dtype=tf.int32 ).numpy()
+inputs[26:35, 17:26, 0:1] = 255.0
+masked_input = tf.keras.layers.Masking( mask_value=255.0, input_shape=(timesteps, features) )( inputs )
+```
+
+2. Horizontals : when contrast is neighbours contrast or image global contrast the horizontals is level compared with in same layer. In example layers can be channels or the same layer it can be some relative data when all have relative values as S1 = { 0.89, 0.89, 0.56, 0.73, 0.35, 0.45 ... } 👧💬 Can we see some significants value from this series S1 ⁉️ 👧💬 Try convolutions them ```tf.keras.layers.Conv1D( 1, 3, activation='relu')(S1)``` you have ```{ 0.78, 0.73, 0.55, 0.51 ... }``` OR { 🟩, 🟦 }
 
 ## Random Functions ##
 
