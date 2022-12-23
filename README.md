@@ -102,7 +102,7 @@ action = [ wheels, speed, breaks ]
 
 ### Input image as curser ###
 
-It required to transfrom the scoped image into matrixes value for the networks model input, the model catagorized object and determine the response functions.
+It is required to transfroming the scoped image into matrixes value for the networks model input, the model catagorized object and determine the response functions.
 
 ```
 original_image = tf.image.resize(observation, [42, 42])
@@ -125,7 +125,7 @@ cropped_original_image = tf.image.crop_to_bounding_box( original_image, offset_h
 
 ### Model ###
 
-The model response as the array of 3 values mapping to the action spaces, ```action = [ 0.0, 0.5, 0.0 ]``` and it is required for our program to tell game of our selected action to player in the game environments ```turn-right```, ```engine accelerate```, ```turn-left```, and ```breaks``` to ```observation, reward, done, info, prob = env.step(action)```
+The model response as an array of 3 values mapping to the action spaces, ```action = [ 0.0, 0.5, 0.0 ]``` and it isour program requirements tell the game of our selected action to player in the game environments ```turn-right```, ```engine accelerate```, ```turn-left```, and ```breaks``` to ```observation, reward, done, info, prob = env.step(action)```
 
 ```
 model = tf.keras.models.Sequential([
