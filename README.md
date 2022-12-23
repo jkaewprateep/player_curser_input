@@ -43,7 +43,8 @@ offset_height = 26
 offset_width = 17
 target_height = 35 - 26
 target_width = 26 - 17
-cropped_original_image = tf.image.crop_to_bounding_box( original_image, offset_height, offset_width, target_height, target_width )
+cropped_original_image = tf.image.crop_to_bounding_box( original_image, offset_height, offset_width, 
+				target_height, target_width )
 ```
 
 ## Result image ##
