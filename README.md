@@ -102,6 +102,8 @@ action = [ wheels, speed, breaks ]
 
 ### Input image as curser ###
 
+It required to transfrom the scoped image into matrixes value for the networks model input, the model catagorized object and determine the response functions.
+
 ```
 original_image = tf.image.resize(observation, [42, 42])
 image = tf.image.rgb_to_grayscale( tf.cast( tf.keras.utils.img_to_array( original_image ), dtype=tf.float32 ) )
@@ -121,16 +123,48 @@ cropped_original_image = tf.image.crop_to_bounding_box( original_image, offset_h
 				target_height, target_width )
 ```
 
+### Model ###
+
+The model response as the array of 3 values mapping to the action spaces, ```action = [ 0.0, 0.5, 0.0 ]``` and it is required for our program to tell game of our selected action to player in the game environments ```turn-right```, ```engine accelerate```, ```turn-left```, and ```breaks``` to ```observation, reward, done, info, prob = env.step(action)```
+
+```
+model = tf.keras.models.Sequential([
+	tf.keras.layers.InputLayer(input_shape=INPUT_DIMS),
+
+	tf.keras.layers.Normalization(mean=3., variance=2.),
+	tf.keras.layers.Normalization(mean=4., variance=6.),
+	tf.keras.layers.Conv2D(32, (3, 3), activation='relu'),
+	tf.keras.layers.MaxPooling2D((2, 2)),
+	tf.keras.layers.Dense(128, activation='relu'),
+	tf.keras.layers.Reshape((128, 9)),
+	tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(96, return_sequences=True, return_state=False)),
+	tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(96)),
+	tf.keras.layers.Flatten(),
+	tf.keras.layers.Dense(192, activation='relu'),
+	tf.keras.layers.Dense(3),
+])
+
+model.summary()
+```
+
 ## Result image ##
 
+There are some results from our simple codes implementation.
+
 #### Play game ####
+
+The car racing game play with Tensorflow.
 
 ![Alt text](https://github.com/jkaewprateep/player_curser_input/blob/main/Car%20Racing.gif?raw=true "Title")
 
 #### Remark curser display ####
 
+The game's player bounding box matching for curser positions.
+
 ![Alt text](https://github.com/jkaewprateep/player_curser_input/blob/main/Figure_1.png?raw=true "Title")
 
 #### Application with other games #### 
+
+The Pixel Helicopter game.
 
 ![Alt text](https://github.com/jkaewprateep/player_curser_input/blob/main/02.png?raw=true "Title")
