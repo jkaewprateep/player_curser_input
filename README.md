@@ -9,7 +9,9 @@ inputs[26:35, 17:26, 0:1] = 255.0
 masked_input = tf.keras.layers.Masking( mask_value=255.0, input_shape=(timesteps, features) )( inputs )
 ```
 
-2. Horizontals : when contrast is neighbours contrast or image global contrast the horizontals is level compared with in same layer. In example layers can be channels or the same layer it can be some relative data when all have relative values as S1 = { 0.89, 0.89, 0.56, 0.73, 0.35, 0.45 ... } 👧💬 Can we see some significants value from this series S1 ⁉️ 👧💬 Try convolutions them ```tf.keras.layers.Conv1D( 1, 3, activation='relu')(S1)``` you have ```{ 0.78, 0.73, 0.55, 0.51 ... }``` OR { 🟩, 🟦 } 
+2. Horizontals : when contrast is neighbours contrast or image global contrast the horizontals is level compared with in same layer. In example layers can be channels or the same layer it can be some relative data when all have relative values as S1 = { 0.89, 0.89, 0.56, 0.73, 0.35, 0.45 ... } 👧💬 Can we see some significants value from this series S1 ⁉️ 👧💬 Try convolutions them ```tf.keras.layers.Conv1D( 1, 3, activation='relu')(S1)``` you have ```{ 0.78, 0.73, 0.55, 0.51 ... }``` OR { 🟩, 🟦 } from [tf.image.resize()](https://www.tensorflow.org/api_docs/python/tf/image/resize)
+
+	Consider ```nearest```, ```bilinear```, ```area```, ```gaussian``` and ```lanczos5``` they are working on the fiters inputs and provide output from the relative values inside the selected matrixes.
 
 ```
 tf.image.resize(
@@ -20,7 +22,7 @@ tf.image.resize(
     antialias=False,
     name=None
 )
-https://www.tensorflow.org/api_docs/python/tf/image/resize
+
 ```
 
 ```
