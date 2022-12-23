@@ -13,6 +13,10 @@ masked_input = tf.keras.layers.Masking( mask_value=255.0, input_shape=(timesteps
 
 3. Data grids and Segmentation : 
 
+### crop_to_bounding_box ### 
+
+[tf.image.crop_to_bounding_box()](https://www.tensorflow.org/api_docs/python/tf/image/crop_to_bounding_box)
+
 ```
 offset_height = 26
 offset_width = 17
@@ -21,13 +25,19 @@ target_width = 26 - 17
 cropped_original_image = tf.image.crop_to_bounding_box( original_image, offset_height, offset_width, target_height, target_width )
 ```
 
+### draw_bounding_boxes ### 
+
+[tf.image.draw_bounding_boxes()](https://www.tensorflow.org/api_docs/python/tf/image/draw_bounding_boxes)
+
 ```
 boxes = tf.constant([26/42, 17/42, 35/42, 26/42], shape=(1, 1, 4))
 colors = tf.constant([[144.0, 238.0, 144.0]])
 original_image = tf.image.draw_bounding_boxes( tf.expand_dims( original_image, axis=0 ), boxes, colors)
 ```
 
-Consider ```nearest```, ```bilinear```, ```area```, ```gaussian``` and ```lanczos5``` in the ```method``` parameter, they are working by fiters inputs and provide output from the relative values inside the selected matrixes.
+### image.resize ###
+
+Consider ```nearest```, ```bilinear```, ```area```, ```gaussian``` and ```lanczos5``` in the ```method``` parameter, they are working by fiters inputs and provide output from the relative values inside the selected matrixes. [tf.image.resizes()](https://www.tensorflow.org/api_docs/python/tf/image/resize)
 
 ```
 # Image resize method in Tensorflow
@@ -41,7 +51,11 @@ tf.image.resize(
 )
 ```
 
-Resize and Rescaling, they are working on data distributions and data relative with masking the masked data will not process and leaves with original information. 
+
+
+### masking ###
+
+Resize and Rescaling, they are working on data distributions and data relative with masking the masked data will not process and leaves with original information. [tf.keras.layers.Masking()](https://www.tensorflow.org/api_docs/python/tf/keras/layers/Masking)
 	
 ```
 image = tf.image.resize(observation, [32, 32])
@@ -54,7 +68,7 @@ masked_input = tf.keras.layers.Masking( mask_value=255.0, input_shape=(timesteps
 result_image = tf.keras.layers.Conv2D(32, (3, 3), activation='relu')(masked_input)
 ```
 
-## Random Functions ##
+### Random Functions ###
 
 ```
 # action = [ a, b, c ]
@@ -79,7 +93,7 @@ wheels = tf.cast( wheels, dtype=tf.int32 )
 action = [ wheels, speed, breaks ]
 ```
 
-## Input image as curser ##
+### Input image as curser ###
 
 ```
 original_image = tf.image.resize(observation, [42, 42])
