@@ -32,7 +32,7 @@ cropped_original_image = tf.image.crop_to_bounding_box( original_image, offset_h
 
 #### 3.2 draw_bounding_boxes #### 
 
-We can significant and display our games curser by draws and remarks value as the same as Pixel Helicopter games and other games, x and y positioning as the side product ```[26/42, 17/42, 35/42, 26/42]``` [tf.image.draw_bounding_boxes()](https://www.tensorflow.org/api_docs/python/tf/image/draw_bounding_boxes)
+We can create significants and display our games curser by draws them and remarks their value as the same as in the Pixel Helicopter games and other games, x and y positioning as the side product of ```[26/42, 17/42, 35/42, 26/42]``` [tf.image.draw_bounding_boxes()](https://www.tensorflow.org/api_docs/python/tf/image/draw_bounding_boxes)
 
 ```
 boxes = tf.constant([26/42, 17/42, 35/42, 26/42], shape=(1, 1, 4))
@@ -42,7 +42,7 @@ original_image = tf.image.draw_bounding_boxes( tf.expand_dims( original_image, a
 
 #### 3.3 image.resize ####
 
-Consider ```nearest```, ```bilinear```, ```area```, ```gaussian``` and ```lanczos5``` in the ```method``` parameter, they are working by fiters inputs and provide output from the relative values inside the selected matrixes. [tf.image.resizes()](https://www.tensorflow.org/api_docs/python/tf/image/resize)
+We consider the ```nearest```, ```bilinear```, ```area```, ```gaussian``` and ```lanczos5``` in the ```method``` parameter, they are working by fiters inputs and provide its output from their relative values inside the selected matrixes. [tf.image.resizes()](https://www.tensorflow.org/api_docs/python/tf/image/resize)
 
 ```
 # Image resize method in Tensorflow
@@ -60,7 +60,7 @@ tf.image.resize(
 
 ### 4. Masking : ###
 
-Resize and Rescaling, they are working on data distributions and data relative with masking the masked data will not process and leaves with original information. [tf.keras.layers.Masking()](https://www.tensorflow.org/api_docs/python/tf/keras/layers/Masking)
+Resizing and Rescaling, they are working on the data distributions and the data relative with data masking, masked data will not tobe process and leaves with the original information. [tf.keras.layers.Masking()](https://www.tensorflow.org/api_docs/python/tf/keras/layers/Masking)
 	
 ```
 image = tf.image.resize(observation, [32, 32])
@@ -75,7 +75,7 @@ result_image = tf.keras.layers.Conv2D(32, (3, 3), activation='relu')(masked_inpu
 
 ### Random Functions ###
 
-How do we create data relationship or equation for our networks model learning and apply the function to responses the environments. From the actions spaces the action create of 3 values float in an array representing from ```1.0 to -1.0``` as ```turn wheel```, ```engine accleration```, and ```break```. The sample action value are ```[ 0.5, 0.5, 0.0 ]```, ```[ 0.0, 0.6, 0.0]```, ```[ -0.5, 0.5, 0.0 ]```, and ```[ 0.0, 0.0, 0.5 ]``` for ```turn-right```, ```engine accelerate```, ```turn-left```, and ```breaks```  
+How do we create a data relationship, quivalent or equation for our networks model learning and it can apply to the function responses in the game environments. From actions spaces, action created from 3 values as floating numbers in an array representing from ```1.0 to -1.0``` as ```turn wheel```, ```engine accleration```, and ```break```. The sample action value are ```[ 0.5, 0.5, 0.0 ]```, ```[ 0.0, 0.6, 0.0]```, ```[ -0.5, 0.5, 0.0 ]```, and ```[ 0.0, 0.0, 0.5 ]``` for ```turn-right```, ```engine accelerate```, ```turn-left```, and ```breaks```  
 
 ```
 # action = [ a, b, c ]
