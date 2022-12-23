@@ -8,6 +8,10 @@ Study games player cursor as image input
 # a wheel
 # b engine
 # c breaks
+
+wheels = 0.0
+speed = 0.6
+breaks = 0.0
 	
 left_side = int(tf.reduce_mean( image[1:3,:,:] ).numpy())
 right_side = int(tf.reduce_mean( image[7:9,:,:] ).numpy())
@@ -16,8 +20,10 @@ coeff_01 = left_side
 coeff_02 = tf.constant( [ left_side, right_side ] ).numpy()[ tf.math.argmin([ left_side, right_side ]).numpy() ] + 7
 coeff_03 = right_side
 	
-temp = tf.constant( [ coeff_01, coeff_02, coeff_03 ], shape=( 1, 3 ) )
-temp = tf.cast( temp, dtype=tf.int32 )
+wheels = tf.constant( [ coeff_01, coeff_02, coeff_03 ], shape=( 1, 3 ) )
+wheels = tf.cast( wheels, dtype=tf.int32 )
+
+action = [ wheels, speed, breaks ]
 ```
 
 ## Input image as curser ##
