@@ -147,6 +147,15 @@ model = tf.keras.models.Sequential([
 model.summary()
 ```
 
+### Files and Directory ###
+
+| File name     | Description   |
+| ------------- |:-------------:|
+| Car Racing.gif 	| result from program |
+| Figure_1.png      	| curser and bounding box      | 
+| 02.png 	| Pixel Helicopter games      | 
+| README.md 	| readme file      | 
+
 ## Result image ##
 
 There are some results from our simple codes implementation.
